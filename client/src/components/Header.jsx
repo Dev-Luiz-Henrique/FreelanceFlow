@@ -1,0 +1,49 @@
+import React from 'react';
+import '../assets/styles/Header.css';
+import SearchIcon from '../assets/images/header-search-icon.png';
+import LocationIcon from '../assets/images/header-location-icon.png';
+import UserIcon from '../assets/images/header-user-icon.png';
+import ConfigIcon from '../assets/images/header-config-icon.png';
+import NotificationIcon from '../assets/images/header-notification-icon.png';
+
+const Header = () => {
+  return (
+    <header>
+        <div id="logo">
+            <p>f</p>
+        </div>
+        <nav>
+            <div id="links">
+                <a href="#">Explorar</a>
+                <a href="#">Comunidade</a>
+                <a href="#">FAQ</a>
+            </div>
+            <div id="search">
+                <a href="#">
+                    <img src={SearchIcon} alt="Search" width="22.5" height="22.5"/>
+                </a>
+                <p>____________</p>
+            </div>
+            <div id="location">
+                <a href="#">
+                    <img src={LocationIcon} alt="Location" width="20.14" height="27"/>
+                </a>
+                <p>São Paulo, SP</p>
+            </div>
+            <div id="icons">
+                <a href="#">
+                    <img src={UserIcon} alt="User" width="51" height="51"/>
+                </a>
+                <a href="#">
+                    <img src={ConfigIcon} alt="Config" width="51" height="51"/>
+                </a>
+                <a href="#">
+                    <img src={NotificationIcon} alt="Notification" width="51" height="51"/>
+                </a>
+            </div>
+        </nav>
+    </header>
+  );
+};
+
+export default Header;
