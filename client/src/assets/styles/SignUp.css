@@ -1,0 +1,14 @@
+main {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+#signup-back-img {
+    width: 70%;
+    background-color: aqua;
+}
+
+#signup-back-img > img {
+    width: auto;
+}
