@@ -3,47 +3,53 @@ import '../assets/styles/SignUpForm.css';
 
 const SignUpForm = () => {
     return (
-        <form className="signup-form">
-            <div id='name-section'>
-                <h1>Cadastro</h1>
-                <p>Nome Completo:</p>
-                <input type="text" placeholder="Nome Completo" />
+        <form className='signup-form'>
+            <h1>Cadastro</h1>
+            <div>
+                <label for='name'>Nome Completo:</label>
+                <input type='text' name='name' placeholder='Digite seu nome completo' autofocus/>
             </div>
-            <div id='user-name-section'>
-                <p>Nome de Usuário:</p>
-                <input type="text" placeholder="Nome de Usuário" />
+            <div>
+                <label for='username'>Nome de Usuário:</label>
+                <input type='text' name='username' placeholder='Digite seu nome de usuário'/>
             </div>
-            <div id='cpf-section'>
-                <p>CPF:</p>
-                <input type="text" placeholder="CPF" />
+            <div>
+                <label for='email'>Email:</label>
+                <input type='text' name='email' placeholder='Digite seu email' />
             </div>
-            <div id='telephone-section'>
-                <p>Telefone:</p>
-                <input type="text" placeholder="(11) 99999999" />
+            <div>
+                <label for='email-confirm'>Confirmação de Email:</label>
+                <input type='text' name='email-confirm' placeholder='Confirme seu email' />
             </div>
-            <div id='birth-section'>
-                <p>Data de Nascimento:</p>
-                <input type="text" placeholder="dd/mm/aaaa" />
+            <div>
+                <label for='password'>Senha:</label>
+                <input type='password' name='password' placeholder='Digite sua senha' />
             </div>
-            <div id='state-section'>
-                <p>Estado:</p>
-                <input type="text" placeholder="Estado" />
+            <div>
+                <label for='passwordConfirm'>Confirmação de Senha:</label>
+                <input type='password' name='password-confirm' placeholder='Confirme sua Senha' />
             </div>
-            <div id='email-section'>
-                <p>Email:</p>
-                <input type="text" placeholder="abc@gmail.com" />
+            <div>
+                <label for='phone'>Telefone:</label>
+                <input type='number' name='phone' placeholder='(xx) xxxxx-xxxx' />
             </div>
-            <div id='email-confirmation-section'>
-                <p>Confirmação de Email:</p>
-                <input type="text" placeholder="abc@gmail.com" />
+            <div>
+                <label for='birth-date'></label>
+                <input type='date' name='birth-date' placeholder='dd/mm/aaaa' />
             </div>
-            <div id='password-section'>
-                <p>Senha:</p>
-                <input type="password" placeholder="Senha" />
+            <div>
+                <label for='state'>Estado:</label>
+                <input type='text' name='state' placeholder='Digite seu estado' />
             </div>
-            <div id='password-confirmation-section'>
-                <p>Confirmação de Senha:</p>
-                <input type="password" placeholder="Senha" />
+            <div>
+                <div>
+                    <input type='radio' name='type-user' value='freelancer'/>
+                    <label for='freelancer'>Freelancer</label>
+                </div>
+                <div>
+                    <input type='radio' name='type-user' value='cliente'/>
+                    <label for='cliente'>Cliente</label>
+                </div>
             </div>
             <button type="submit">enviar</button>
         </form>
