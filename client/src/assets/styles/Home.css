@@ -1,4 +1,4 @@
-.home {
+/* .home {
     display: flex;
     flex-direction: row;
     margin: 0;
@@ -57,7 +57,6 @@
     border-color: #b8b8ff;
 }
 
-/* -------------------------------------------------------------------------- */
 #main-container {
     display: flex;
 }
@@ -131,4 +130,4 @@
     #grid {
         grid-template-columns: 1fr;
     }
-}
+} */
