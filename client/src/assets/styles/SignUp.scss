@@ -1,0 +1,17 @@
+.signup {
+    display: flex;
+    flex-direction: row;
+    width: 100vw;
+    height: 85vh;
+    overflow-y: hidden;
+    //position: fixed;
+  
+    
+    &__img {
+        width: 70%;
+        
+        img {
+            width: auto;
+        }  
+    }
+}

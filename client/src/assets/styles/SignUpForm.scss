@@ -1,0 +1,90 @@
+@mixin txtBox {
+    width: 25rem;
+    height: 3rem;
+    border: none;
+    border-radius: 24px;
+    background-color: white;
+    font-size: 1rem;
+}
+
+
+
+.signup-form {
+    width: 50vw;
+    height: 85vh;
+    background-color: #F8F7FF; 
+    overflow-y: auto;
+    overflow-x: hidden;
+    
+    p {
+        margin: 1.5rem 2rem;
+        font-size: 3rem;
+        font-weight: 600;
+    }
+
+    div {
+        display: flex;
+        flex-flow: wrap column;
+        margin: 1rem 2.2rem;
+        
+        > label {
+            margin-bottom: 0.2rem;
+            font-size: 1.5rem;
+        }
+    }
+
+    input:not([type="radio"]) {
+        @include txtBox; 
+        padding: 0.5rem 1rem;
+    }
+
+    &__password {
+        position: relative;
+        width: fit-content;
+
+        input {
+            padding-left: 10px;
+        }
+      
+        button {
+            position: relative;
+            transform: translateX(-5.5rem);
+            background: none;
+            border: none;
+            padding: 0;
+        }
+    }
+
+    &__radio {
+        display: flex;
+        align-items: center;
+
+        input {
+            width: 1.5rem;      
+            height: 1.5rem;
+            margin: 0.5rem 0;
+        }
+
+        label {
+            margin-left: 0.7rem;
+            font-size: 1.2rem;
+        }
+    }
+
+    /* Scrollbar */
+    
+    &::-webkit-scrollbar {
+        width: 15px;
+        height: 100vh;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background-color: #D9D9D9;        
+        border-radius: 15px;
+        
+    }
+
+    &::-webkit-scrollbar-track {
+        scroll-behavior: auto;      
+    }
+}

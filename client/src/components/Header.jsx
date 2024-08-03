@@ -1,5 +1,5 @@
 import React from 'react';
-import '../assets/styles/Header.css';
+import '../assets/styles/Header.scss';
 import SearchIcon from '../assets/images/header-search-icon.png';
 import LocationIcon from '../assets/images/header-location-icon.png';
 import UserIcon from '../assets/images/header-user-icon.png';
@@ -8,29 +8,29 @@ import NotificationIcon from '../assets/images/header-notification-icon.png';
 
 const Header = () => {
   return (
-    <header>
-        <div id="logo">
+    <header className='header'>
+        <div className='header__logo'>
             <p>f</p>
         </div>
         <nav>
-            <div id="links">
+            <div className='header__links'>
                 <a href="#">Explorar</a>
                 <a href="#">Comunidade</a>
                 <a href="#">FAQ</a>
             </div>
-            <div id="search">
+            <div className='header_search'>
                 <a href="#">
                     <img src={SearchIcon} alt="Search" width="22.5" height="22.5"/>
                 </a>
                 <p>____________</p>
             </div>
-            <div id="location">
+            <div className='header__location'>
                 <a href="#">
                     <img src={LocationIcon} alt="Location" width="20.14" height="27"/>
                 </a>
                 <p>São Paulo, SP</p>
             </div>
-            <div id="icons">
+            <div className='header__icons'>
                 <a href="#">
                     <img src={UserIcon} alt="User" width="51" height="51"/>
                 </a>

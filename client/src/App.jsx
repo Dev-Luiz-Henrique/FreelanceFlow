@@ -1,13 +1,12 @@
-import Home from './pages/Home.jsx';
-//import SignUp from './pages/SignUp.jsx';
-
+import Home from "./pages/Home.jsx";
+import SignUp from './pages/SignUp.jsx';
 
 function App() {
-  return (
-    <>
-      <Home />
-    </>
-  );
-};
+    return (
+        <>
+            <SignUp />
+        </>
+    );
+}
 
 export default App;

@@ -1,55 +1,67 @@
 import React from 'react';
-import '../assets/styles/SignUpForm.css';
+import '../assets/styles/SignUpForm.scss';
+import { Eye, EyeOff } from 'lucide-react';
 
 const SignUpForm = () => {
+    const [passwordToggler, setPasswordToggler] = React.useState(false);
+    const togglePassword = () => {
+        setPasswordToggler(!passwordToggler);
+    };
+    
     return (
         <form className='signup-form'>
-            <h1>Cadastro</h1>
+            <p>Cadastro</p>
             <div>
-                <label for='name'>Nome Completo:</label>
-                <input type='text' name='name' placeholder='Digite seu nome completo' autofocus/>
+                <label htmlFor='name'>Nome Completo:</label>
+                <input type='text' id='name' placeholder='Digite seu nome completo' autoComplete='name' autoFocus />
             </div>
             <div>
-                <label for='username'>Nome de Usuário:</label>
-                <input type='text' name='username' placeholder='Digite seu nome de usuário'/>
+                <label htmlFor='username'>Nome de Usuário:</label>
+                <input type='text' id='username' placeholder='Digite seu nome de usuário' autoComplete='username' />
             </div>
             <div>
-                <label for='email'>Email:</label>
-                <input type='text' name='email' placeholder='Digite seu email' />
+                <label htmlFor='email'>Email:</label>
+                <input type='email' id='email' placeholder='Digite seu email' autoComplete='email' />
             </div>
             <div>
-                <label for='email-confirm'>Confirmação de Email:</label>
-                <input type='text' name='email-confirm' placeholder='Confirme seu email' />
+                <label htmlFor="email-confirm">Confirmar Email:</label>
+                <input type='email' id='email-confirm' placeholder='Confirme seu email' />
             </div>
             <div>
-                <label for='password'>Senha:</label>
-                <input type='password' name='password' placeholder='Digite sua senha' />
+                <label htmlFor='password'>Senha:</label>
+                <span className='signup-form__password'>
+                    <input type={passwordToggler ? 'text' : 'password'} placeholder='Digite sua senha'></input>
+                    <button type='button' onClick={togglePassword} className='toggle-password'>
+                        {passwordToggler ? <Eye /> : <EyeOff /> }
+                    </button>
+                </span>
             </div>
             <div>
-                <label for='passwordConfirm'>Confirmação de Senha:</label>
-                <input type='password' name='password-confirm' placeholder='Confirme sua Senha' />
+                <label htmlFor='password-confirm'>Confirmar Senha:</label>
+                <input type='password' id='password-confirm' placeholder='Confirme sua Senha' />
             </div>
             <div>
-                <label for='phone'>Telefone:</label>
-                <input type='number' name='phone' placeholder='(xx) xxxxx-xxxx' />
+                <label htmlFor='phone'>Telefone:</label>
+                <input type='number' id='phone' placeholder='(xx) xxxxx-xxxx' autoComplete='tel' />
             </div>
             <div>
-                <label for='birth-date'></label>
-                <input type='date' name='birth-date' placeholder='dd/mm/aaaa' />
+                <label htmlFor='birthdate'>Data de Nascimento:</label>
+                <input type='date' id='birthdate' placeholder='dd/mm/aaaa' />
             </div>
             <div>
-                <label for='state'>Estado:</label>
-                <input type='text' name='state' placeholder='Digite seu estado' />
+                <label htmlFor='state'>Estado:</label>
+                <input type='text' id='state' placeholder='Digite seu estado' />
             </div>
+
             <div>
-                <div>
-                    <input type='radio' name='type-user' value='freelancer'/>
-                    <label for='freelancer'>Freelancer</label>
-                </div>
-                <div>
-                    <input type='radio' name='type-user' value='cliente'/>
-                    <label for='cliente'>Cliente</label>
-                </div>
+                <span className='signup-form__radio'>
+                    <input type='radio' name='role' id='freelancer' value='freelancer' />
+                    <label htmlFor='freelancer' className='signup__radio__label' >Freelancer</label>
+                </span>
+                <span className='signup-form__radio'>
+                    <input type='radio' name='role' id='client' value='cliente' />
+                    <label htmlFor='client' className='signup__radio__label' >Cliente</label>
+                </span>
             </div>
             <button type="submit">enviar</button>
         </form>

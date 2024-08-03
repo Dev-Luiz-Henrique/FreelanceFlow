@@ -1,17 +1,17 @@
 import React from "react";
 import Header from "../components/Header";
 import SignUpForm from "../components/SignUpForm";
-import "../assets/styles/SignUp.css";
+import "../assets/styles/SignUp.scss";
 import backgroundImage from "../assets/images/signup-background.png";
 
 const SignUp = () => {
     return (
         <>
             <Header />
-            <main>
+            <main className='signup'>
                 <SignUpForm />
-                <div id="signup-back-img">
-                    <img src={backgroundImage} alt="" />
+                <div className='signup__img'>
+                    <img src={backgroundImage} alt="imagem :)" />
                 </div>
             </main>
         </>
