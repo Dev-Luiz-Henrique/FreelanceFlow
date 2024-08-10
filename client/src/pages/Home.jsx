@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from 'react-router-dom';
 import "../assets/styles/Home.scss";
 import homeMenuImg from "../assets/images/home-menu.png";
 import logo from "../assets/images/logo.png";
@@ -10,15 +11,19 @@ const Home = () => {
                 <img src={logo} alt="" />
                 <div className="home__info__header">
                     <h1>FreelanceFlow</h1>
-                    <p>
+                    <p> 
                         Onde talentos e oportunidades se
                         <br />
                         encontram!
                     </p>
                 </div>
                 <span>
-                    <button className="home__btn--accent">Cadastre-se</button>
-                    <button className="home__btn">Saiba mais</button>
+                    <Link to="/signup">
+                        <button className="home__btn--accent">Cadastre-se</button>
+                    </Link>
+                    <Link to="/slider">
+                        <button className="home__btn">Saiba mais</button>
+                    </Link>
                 </span>
 
                 <div className="home__info__benefits">
@@ -44,8 +49,12 @@ const Home = () => {
 
             <section className="home__menu">
                 <span>
-                    <button>Login</button>
-                    <button>Inscreva-se</button>
+                    <Link to="/signin">
+                        <button>Login</button>
+                    </Link>
+                    <Link to="/signup">
+                        <button>Inscreva-se</button>
+                    </Link>
                 </span>
             </section>
         </main>

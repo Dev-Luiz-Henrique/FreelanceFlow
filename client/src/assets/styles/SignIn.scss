@@ -1,0 +1,85 @@
+@mixin txtBox {
+    width: 27rem;
+    height: 3rem;
+    border: none;
+    border-radius: 24px;
+    background-color: white;
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+}
+
+.signin {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+
+    section {
+        width: 40%;
+        height: 80%;
+        background-color: var(--lightest-color);
+        border: 1px solid rgb(0, 0, 0, 0.5);
+        border-radius: 15px;
+        margin: auto;
+        padding: 2rem;
+
+        span {
+            display: flex;
+            flex-flow: wrap row;
+            justify-content: center;
+            margin: auto;
+            gap: 5%;
+
+            p {
+                font-size: 2rem;
+                font-weight: 600;
+                margin: auto 0;
+            }
+        }
+
+        > div {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        > p {
+            font-size: 1.5rem;
+            font-weight: 400;
+            text-align: center;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+
+            input {
+                @include txtBox; 
+                margin: auto;
+            }
+        }
+
+        // button {
+            
+        // }
+    }
+
+    &__with {
+        width: 60%;
+        margin: auto;  background-color: aqua;
+        
+        // button {
+        //     // width: 100%;
+        //     // height: 3rem;
+        //     // border: none;
+        //     border-radius: 10px;
+        //     background-color: white;
+        //     border-color: #9381ff;
+        //     color: black;
+        //     font-size: 1rem;
+        //     font-weight: 600;
+        //     margin: 1rem auto;
+        // }
+    }
+}
