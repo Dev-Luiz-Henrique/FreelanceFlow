@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from "react-router-dom";
 import '../assets/styles/SignUpForm.scss';
 import { Eye, EyeOff } from 'lucide-react';
 
@@ -75,7 +76,7 @@ const SignUpForm = () => {
             </div>
             <div>
                 <label htmlFor='phone'>Telefone:</label>
-                <input type='tel' id='phone' placeholder='(xx) xxxxx-xxxx' autoComplete='tel' />
+                <input type='text' id='phone' placeholder='(xx) xxxxx-xxxx' autoComplete='tel' />
             </div>
             <div>
                 <label htmlFor='birthdate'>Data de Nascimento:</label>
@@ -100,11 +101,12 @@ const SignUpForm = () => {
                     <label htmlFor='client' className='signup__radio__label' >Cliente</label>
                 </span>
             </div>
-            <button type='submit'>Enviar</button>
-            <div className='signup-form__footer'>
-                <p>Já tem uma conta? <a href='/login'>Faça login</a></p>
+            <div className='signup-form__send'>
+                <button type='submit'>Enviar</button>
             </div>
-            
+            <div className='signup-form__footer'>
+                <p>Já tem uma conta? <Link to='/signin'>Faça login</Link></p>
+            </div>
         </form>
     );
 }  

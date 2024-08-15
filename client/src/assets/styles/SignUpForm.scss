@@ -1,11 +1,6 @@
 @mixin txtBox {
-    width: 27rem;
-    height: 3rem;
     border: none;
     border-radius: 24px;
-    background-color: white;
-    font-size: 1rem;
-    padding: 0.5rem 1rem;
 }
 
 .signup-form {  
@@ -36,36 +31,12 @@
         @include txtBox; 
     }
 
-    > button {
-        margin: 1.8rem auto;
-        display: flex;
-        justify-content: center;
-
-        width: 12rem;
-        height: 3rem;
-        border-radius: 20px;
-        font-family: 'Poppins', sans-serif;
-        font-size: 18px;
-        font-weight: 700;
-        padding: 0.5rem 2rem;
-        transition: background-color 0.7s ease, color 0.7s ease,
-            border-color 0.7s ease;
-        background-color: black;
-        color: white;
-        cursor: pointer;
-    }
-    > button:hover {
-        background-color: white;
-        color: black;
-        border-color: black;
-    }
-
     &__password {
         display: flex;
         align-items: center;
         position: relative;
         width: min-content;
-        height: 3rem;
+        width: 100%;
 
         input {
             padding-left: 10px;
@@ -86,10 +57,23 @@
         position: relative;
 
         select {
-            appearance: none;
             @include txtBox; 
-            cursor: pointer
         }
+    }
+
+    &__state::after {
+        --size: 0.4rem;
+        position: absolute;
+        content: "";
+        right: 1.3rem;
+        pointer-events: none;
+    }
+    
+    &__state::after {
+        border-left: var(--size) solid transparent;
+        border-right: var(--size) solid transparent;
+        border-top: var(--size) solid black;
+        top: 70%;
     }
 
     &__radio {
@@ -102,13 +86,28 @@
             margin: 0.5rem 0;
         }
 
-        input:checked {
-            background-color: aqua; font-size: small;
-        }
-
         label {
             margin-left: 0.7rem;
             font-size: 1.2rem;
+        }
+    }
+
+    &__send {
+        margin-top: 1.8rem;
+
+        button {
+            width: 12rem;
+            height: 3rem;
+            margin: auto;
+        }
+    }
+
+    &__footer{
+        p {
+            margin: auto;
+        }
+        a {
+            text-decoration: underline;
         }
     }
 
@@ -127,26 +126,4 @@
     &::-webkit-scrollbar-track {
         scroll-behavior: auto;      
     }
-
-    .signup-form__footer{
-        p {
-            margin: auto;
-        }
-    }
 }
-/*
-.signup-form__state::before,
-.signup-form__state::after {
-  --size: 0.3rem;
-  position: absolute;
-  content: "";
-  right: 1rem;
-  pointer-events: none;
-}
-
-.signup-form__state::after {
-  border-left: var(--size) solid transparent;
-  border-right: var(--size) solid transparent;
-  border-top: var(--size) solid black;
-  top: 55%;
-}*/

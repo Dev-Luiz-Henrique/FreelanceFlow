@@ -9,6 +9,9 @@
     a, p {
         margin: auto 0;
     }
+    a:visited {
+        color: white;
+    }
 
     nav {
         display: flex;
@@ -46,7 +49,6 @@
         a {
             color: white;
             font-size: 18px;
-            text-decoration: none;
             margin: auto 0;
         }
     }
