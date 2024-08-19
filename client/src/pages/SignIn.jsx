@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "../assets/styles/SignIn.scss";
+import "../styles/SignIn.scss";
 import { GoogleLoginButton, LinkedInLoginButton } from 'react-social-login-buttons';
 import logo from "../assets/images/logo.png";
 
@@ -21,7 +21,9 @@ const SignIn = () => {
         <main className='signin'>
             <section>
                 <header>
-                    <img src={logo} alt='' />
+                    <Link to="/">
+                        <img src={logo} alt="" />
+                    </Link>
                     <p>FreelanceFlow</p>  
                 </header>
                 <div>

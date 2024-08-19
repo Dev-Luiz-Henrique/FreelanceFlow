@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import '../assets/styles/Header.scss';
+import '../styles/Header.scss';
 import SearchIcon from '../assets/images/header-search-icon.png';
 import LocationIcon from '../assets/images/header-location-icon.png';
 import UserIcon from '../assets/images/header-user-icon.png';

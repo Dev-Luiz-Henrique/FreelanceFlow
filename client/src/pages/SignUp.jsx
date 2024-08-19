@@ -1,7 +1,6 @@
-import React from "react";
 import Header from "../components/Header";
 import SignUpForm from "../components/SignUpForm";
-import "../assets/styles/SignUp.scss";
+import "../styles/SignUp.scss";
 import backgroundImage from "../assets/images/signup-background.png";
 
 const SignUp = () => {
@@ -11,7 +10,7 @@ const SignUp = () => {
             <main className='signup'>
                 <SignUpForm />
                 <div className='signup__img'>
-                    <img src={backgroundImage} alt="imagem :)" />
+                    {/*<img src={backgroundImage} alt="imagem :)" />*/}
                 </div>
             </main>
         </>

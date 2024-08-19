@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "../assets/styles/Home.scss";
+import "../styles/Home.scss";
 import homeMenuImg from "../assets/images/home-menu.png";
 import logo from "../assets/images/logo.png";
 
@@ -21,7 +21,7 @@ const Home = () => {
                     <Link to='/signup'>
                         <button className='btn-alt'>Cadastre-se</button>
                     </Link>
-                    <Link to='/slider'>
+                    <Link to='/freelancer'>
                         <button className='btn-alt--accent'>Saiba mais</button>
                     </Link>
                 </span>

@@ -1,37 +1,8 @@
 import React from 'react';
 import { Link } from "react-router-dom";
-import '../assets/styles/SignUpForm.scss';
+import '../styles/SignUpForm.scss';
 import { Eye, EyeOff } from 'lucide-react';
-
-const states = [
-    { value: 'AC', label: 'Acre' },
-    { value: 'AL', label: 'Alagoas' },
-    { value: 'AP', label: 'Amapá' },
-    { value: 'AM', label: 'Amazonas' },
-    { value: 'BA', label: 'Bahia' }, 
-    { value: 'CE', label: 'Ceará' },
-    { value: 'DF', label: 'Distrito Federal' },
-    { value: 'ES', label: 'Espírito Santo' },
-    { value: 'GO', label: 'Goiás' },
-    { value: 'MA', label: 'Maranhão' },
-    { value: 'MT', label: 'Mato Grosso' },
-    { value: 'MS', label: 'Mato Grosso do Sul' },
-    { value: 'MG', label: 'Minas Gerais' },
-    { value: 'PA', label: 'Pará' },
-    { value: 'PB', label: 'Paraíba' },
-    { value: 'PR', label: 'Paraná' },
-    { value: 'PE', label: 'Pernambuco' },
-    { value: 'PI', label: 'Piauí' },
-    { value: 'RJ', label: 'Rio de Janeiro' },
-    { value: 'RN', label: 'Rio Grande do Norte' },
-    { value: 'RS', label: 'Rio Grande do Sul' },
-    { value: 'RO', label: 'Rondônia' },
-    { value: 'RR', label: 'Roraima' },
-    { value: 'SC', label: 'Santa Catarina' },
-    { value: 'SP', label: 'São Paulo' },
-    { value: 'SE', label: 'Sergipe' },
-    { value: 'TO', label: 'Tocantins' }
-];
+import statesEnum from '../types/StatesEnum';
 
 const SignUpForm = () => {
     const [passwordToggler, setPasswordToggler] = React.useState(false);
@@ -85,8 +56,10 @@ const SignUpForm = () => {
             <div className='signup-form__state'> 
                 <label htmlFor='state'>Estado:</label>
                 <select id='state'>
-                    {states.map((state) => (
-                        <option key={state.value} value={state.value}>{state.label}</option>
+                    {Object.values(statesEnum).map((state) => (
+                        <option key={state.value} value={state.value}>
+                            {state.name}
+                        </option>
                     ))}
                 </select>
             </div>
