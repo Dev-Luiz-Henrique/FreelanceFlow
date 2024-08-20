@@ -1,11 +1,15 @@
-const freelancerController = require('../controllers/OwnersController');
-
-
-
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-const userController = require('../controllers/OwnerController');
+const FreelancerController = require("../controllers/FreelancerController");
 
-router.get('/users', userController.getUsers);
+router.get("/freelancers", FreelancerController.getAllFreelancers);
+
+router.post("/freelancers", FreelancerController.createFreelancer);
+
+router.put("/freelancers/:id", FreelancerController.updateFreelancer);
+
+router.delete("/freelancers/:id", FreelancerController.deleteFreelancerById);
+
+router.get("/freelancers/:id", FreelancerController.getFreelancerById);
 
 module.exports = router;

@@ -24,9 +24,11 @@ app.get("/teste", (req, res) => {
 
 // Importando as rotas
 const ownerRoutes = require('./src/routes/OwnerRoute');
+const freelancerRoutes = require('./src/routes/FreelancerRoute');
 
 // Usando as rotas
 app.use('/', ownerRoutes);
+app.use('/', freelancerRoutes);
 
 app.listen(port, () => {
     console.log(`Servidor rodando na porta ${port}`);
