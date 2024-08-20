@@ -3,10 +3,10 @@ const OwnerService = require("../services/OwnerService");
 function handleError(res, error, statusCode = 500) {
     const errorResponse = {
         statusCode,
-        error: "Something went wrong",
+        error: "Server Error",
     };
 
-    if(process.env.NODE_ENV === "development")
+    if (process.env.NODE_ENV === "development")
         errorResponse.details = error.message;
     res.status(statusCode).json(errorResponse);
 }
@@ -83,7 +83,7 @@ const updateOwnerById = async (req, res, next) => {
             });
         }
 
-        const updatedOwner = await OwnerService.updateOwner(id, { 
+        const updatedOwner = await OwnerService.updateOwner(id, {
             name, username, email, password, phone, state, birthDate
         });
         res.status(200).json({
