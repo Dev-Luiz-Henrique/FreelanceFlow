@@ -79,7 +79,7 @@ const updateOwnerById = async (req, res, next) => {
             return res.status(404).json({
                 statusCode: 404,
                 error: "Not Found",
-                message: "Owner not found.",
+                message: "Owner was not found.",
             });
         }
 
