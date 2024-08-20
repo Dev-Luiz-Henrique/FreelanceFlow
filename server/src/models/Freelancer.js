@@ -1,16 +1,47 @@
-const Profile = require('./Profile');
-const ProfileType = require('../enums/ProfileType');
+// const ProfileType = require('../enums/ProfileType');
+const { DataTypes } = require("sequelize");
 
-const Freelancer = Profile.scope('freelancer').init({
-    // Freelancer specific fields (If needed)
-}, {
-    sequelize: Profile.sequelize,
-    modelName: 'Freelancer',
-    defaultScope: {
-        where: {
-            profileType: ProfileType.FREELANCER
-        }
-    }
-});
+function freelancerModel(sequelize) {
+    return sequelize.define("Freelancer", {
+        id: {
+            type: DataTypes.INTEGER,
+            primaryKey: true,
+            autoIncrement: true,
+        },
+        name: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
+        username: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
+        email: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            unique: true,
+        },
+        password: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
+        phone: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            unique: true,
+        },
+        state: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
+        birthDate: {
+            type: DataTypes.DATE,
+            allowNull: false,
+        },
+    }, {
+        freezeTableName: true,
+        timestamps: false,
+    });
+}
 
-module.exports = Freelancer;
+module.exports = freelancerModel;
