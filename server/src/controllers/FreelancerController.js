@@ -36,7 +36,7 @@ const createFreelancer = async (req, res, next) => {
     }
 }
 
-const updateFreelancer = async (req, res, next) => {
+const updateFreelancerById = async (req, res, next) => {
     try {
         const { id } = req.params;
         if (!id) {
@@ -67,7 +67,7 @@ const updateFreelancer = async (req, res, next) => {
     }
 }
 
-const deleteFreelancer = async (req, res, next) => {
+const deleteFreelancerById = async (req, res, next) => {
     try {
         const { id } = req.params;
         if (!id) {
@@ -118,7 +118,7 @@ const getFreelancerById = async (req, res, next) => {
 module.exports = {
     getAllFreelancers,
     createFreelancer,
-    updateFreelancer,
-    deleteFreelancer,
+    updateFreelancerById,
+    deleteFreelancerById,
     getFreelancerById,
 }

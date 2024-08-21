@@ -6,7 +6,7 @@ router.get("/freelancers", FreelancerController.getAllFreelancers);
 
 router.post("/freelancers", FreelancerController.createFreelancer);
 
-router.put("/freelancers/:id", FreelancerController.updateFreelancer);
+router.put("/freelancers/:id", FreelancerController.updateFreelancerById);
 
 router.delete("/freelancers/:id", FreelancerController.deleteFreelancerById);
 

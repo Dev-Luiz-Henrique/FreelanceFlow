@@ -1,5 +1,5 @@
 const Sequelize = require("sequelize");
-const ownerModel = require("../models/Owner");
+const OwnerModel = require("../models/Owner");
 const FreelancerModel = require("../models/Freelancer");
 
 // Cria uma instância de conexão com um banco de dados
@@ -24,8 +24,8 @@ const authDB = async () => {
     }
 };
 
-// Carrega os modelos s
-const Owner = ownerModel(sequelize);
+// Carrega os modelos
+const Owner = OwnerModel(sequelize);
 const Freelancer = FreelancerModel(sequelize);
 
 // Sincroniza os modelos com o banco de dados
