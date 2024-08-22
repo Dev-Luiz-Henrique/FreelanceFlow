@@ -14,7 +14,7 @@ function handleError(res, error, statusCode = 500) {
 const getAllOwners = async (req, res, next) => {
     try {
         const owners = await OwnerService.getAllOwners();
-        if (!owners || owners.length === 0) {
+        if (owners.length === 0) {
             return res.status(204).json({
                 statusCode: 204,
                 message: "No owners found",

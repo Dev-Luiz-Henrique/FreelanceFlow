@@ -3,7 +3,7 @@ const FreelancerService = require('../services/FreelancerService');
 const getAllFreelancers = async (req, res, next) => {
     try {
         const freelancers = await FreelancerService.getAllFreelancers();
-        if (!freelancers || freelancers.lenght == 0) {
+        if (freelancers.length == 0) {
             return res.status(204).json({
                 statusCode: 204,
                 message: "No freelancers found",
@@ -46,6 +46,7 @@ const updateFreelancerById = async (req, res, next) => {
                 message: "ID is required.",
             });
         }
+        
         const { name, username, email, password, phone, state, birthDate } = req.body;
         if (!name && !username && !email && !password && !phone && !state && !birthDate) {
             return res.status(400).json({
@@ -55,7 +56,9 @@ const updateFreelancerById = async (req, res, next) => {
             });
         }
 
-        const updatedFreelancer = await FreelancerService.updateFreelancer({ id, name, username, email, password, phone, state, birthDate });
+        const updatedFreelancer = await FreelancerService.updateFreelancer({ 
+            id, name, username, email, password, phone, state, birthDate 
+        });
         res.status(200).json({
             statusCode: 200,
             message: "Freelancer updated successfully",

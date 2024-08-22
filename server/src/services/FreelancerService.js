@@ -9,11 +9,11 @@ const createFreelancer = async ({ name, username, email, password, phone, state,
     return newFreelancer;
 }
 
-const updateFreelancer = async ({ name, username, email, password, phone, state, birthDate }) => {
-    const freelancer = await freelancer.findByPk(id);
+const updateFreelancer = async ({ id, name, username, email, password, phone, state, birthDate }) => {
+    const freelancer = await Freelancer.findByPk(id);
     if (!freelancer) throw new Error('Freelancer not found');
 
-    await freelancer.update({ name, username, email, password, phone, state, birthDate });
+    await freelancer.update({ id, name, username, email, password, phone, state, birthDate });
     return await Freelancer.findByPk(id);
 }
 

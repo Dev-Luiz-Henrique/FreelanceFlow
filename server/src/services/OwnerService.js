@@ -10,7 +10,7 @@ const createOwner = async ({ name, username, email, password, phone, state, birt
 };
 
 
-const updateOwner = async ({ name, username, email, password, phone, state, birthDate }) => {
+const updateOwner = async ({ id, name, username, email, password, phone, state, birthDate }) => {
     const owner = await Owner.findByPk(id);
     if (!owner) throw new Error('Owner not found');
 
