@@ -1,15 +1,5 @@
 const OwnerService = require("../services/OwnerService");
-
-function handleError(res, error, statusCode = 500) {
-    const errorResponse = {
-        statusCode,
-        error: "Server Error",
-    };
-
-    if (process.env.NODE_ENV === "development")
-        errorResponse.details = error.message;
-    res.status(statusCode).json(errorResponse);
-}
+const handleHttpError = require('../utils/httpErrorHandler');
 
 const getAllOwners = async (req, res, next) => {
     try {
@@ -24,7 +14,7 @@ const getAllOwners = async (req, res, next) => {
         res.status(200).json(owners);
     } catch (error) {
         console.error("Error fetching owners:", error);
-        handleError(res, error);
+        handleHttpError(res, error);
     }
 };
 
@@ -50,7 +40,7 @@ const createOwner = async (req, res, next) => {
         });
     } catch (error) {
         console.error("Error creating owner:", error);
-        handleError(res, error);
+        handleHttpError(res, error);
     }
 };
 
@@ -93,7 +83,7 @@ const updateOwnerById = async (req, res, next) => {
         });
     } catch (error) {
         console.error("Error updating owner:", error);
-        handleError(res, error);
+        handleHttpError(res, error);
     }
 };
 
@@ -121,7 +111,7 @@ const deleteOwnerById = async (req, res, next) => {
         res.status(204).json();
     } catch (error) {
         console.error("Error deleting owner by ID:", error);
-        handleError(res, error);
+        handleHttpError(res, error);
     }
 };
 
@@ -148,7 +138,7 @@ const getOwnerById = async (req, res, next) => {
         res.status(200).json(owner);
     } catch (error) {
         console.error("Error fetching owner by ID:", error);
-        handleError(res, error);
+        handleHttpError(res, error);
     }
 };
 

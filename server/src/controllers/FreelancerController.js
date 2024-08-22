@@ -1,4 +1,5 @@
 const FreelancerService = require('../services/FreelancerService');
+const handleHttpError = require('../utils/httpErrorHandler');
 
 const getAllFreelancers = async (req, res, next) => {
     try {
@@ -13,7 +14,7 @@ const getAllFreelancers = async (req, res, next) => {
     }
     catch (error) {
         console.error("Error fetching all freelancers:", error);
-        handleError(res, error);
+        handleHttpError(res, error);
     }
 };
 
@@ -32,7 +33,7 @@ const createFreelancer = async (req, res, next) => {
         res.status(201).json(newFreelancer);
     } catch (error) {
         console.error("Error creating freelancer:", error);
-        handleError(res, error);
+        handleHttpError(res, error);
     }
 }
 
@@ -66,7 +67,7 @@ const updateFreelancerById = async (req, res, next) => {
         });
     } catch (error) {
         console.error("Error updating freelancer:", error);
-        handleError(res, error);
+        handleHttpError(res, error);
     }
 }
 
@@ -88,7 +89,7 @@ const deleteFreelancerById = async (req, res, next) => {
         });
     } catch (error) {
         console.error("Error deleting freelancer:", error);
-        handleError(res, error);
+        handleHttpError(res, error);
     }
 }
 
@@ -114,7 +115,7 @@ const getFreelancerById = async (req, res, next) => {
         res.status(200).json(freelancer);
     } catch (error) {
         console.error("Error fetching freelancer by ID:", error);
-        handleError(res, error);
+        handleHttpError(res, error);
     }
 }
 
