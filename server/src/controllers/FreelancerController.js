@@ -29,7 +29,9 @@ const createFreelancer = async (req, res, next) => {
             });
         }
 
-        const newFreelancer = await FreelancerService.createFreelancer({ name, username, email, password, phone, state, birthDate });
+        const newFreelancer = await FreelancerService.createFreelancer({ 
+            name, username, email, password, phone, state, birthDate
+        });
         res.status(201).json(newFreelancer);
     } catch (error) {
         console.error("Error creating freelancer:", error);
