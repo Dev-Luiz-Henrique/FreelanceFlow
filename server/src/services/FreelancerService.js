@@ -1,10 +1,38 @@
 const { Freelancer } = require("../config/sqlContext");
 const { Op } = require("sequelize");
-const { ConflictError, NotFoundError } = require("../utils/errors/index");
+const { ConflictError, NotFoundError, ValidationError } = require("../utils/errors/index");
 
 //
 // Validations
 //
+
+async function validateFreelancerData({ email, phone, password, birthDate }) {
+    if (!validateEmailFormat(email)) throw new ValidationError('Invalid email format');
+    if (!validatePhoneFormat(phone)) throw new ValidationError('Invalid phone format');
+    if (!validatePasswordStrength(password)) throw new ValidationError('Password does not meet security requirements');
+    if (!validateBirthDate(birthDate)) throw new ValidationError('Invalid birth date or age below the required minimum');
+}
+
+function validateEmailFormat(email) {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+}
+
+function validatePhoneFormat(phone) {
+    const phoneRegex = /^\d{10,15}$/; // Exemplo simples, ajustar conforme necessário
+    return phoneRegex.test(phone);
+}
+
+function validatePasswordStrength(password) {
+    return password.length >= 8 && /[A-Z]/.test(password) && /[!@#$%^&*]/.test(password);
+}
+
+function validateBirthDate(birthDate) {
+    const date = new Date(birthDate);
+    const age = new Date().getFullYear() - date.getFullYear();
+    return !isNaN(date.getTime()) && age >= 18;
+}
+
 async function verifyUniqueFields(email, username) {
     const existingFreelancer = await Freelancer.findOne({
         where: {
@@ -37,6 +65,7 @@ const getAllFreelancers = async () => {
 };
 
 const createFreelancer = async ({ name, username, email, password, phone, state, birthDate }) => {
+    await validateFreelancerData({ email, phone, password, birthDate });
     await verifyUniqueFields(email, username);
 
     const newFreelancer = await Freelancer.create({ name, username, email, password, phone, state, birthDate });
