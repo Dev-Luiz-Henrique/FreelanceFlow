@@ -1,24 +1,37 @@
 const { Freelancer } = require("../config/sqlContext");
 const { Op } = require("sequelize");
+const { ConflictError } = require("../utils/errors/index");
+
+//
+// Validations
+//
+async function verifyUniqueFields(email, username) {
+    const existingFreelancer = await Freelancer.findOne({
+        where: {
+            [Op.or]: [ { email }, { username } ]
+        }
+    });
+    
+    if (existingFreelancer) {
+        const conflictingFields = [];
+        if (existingFreelancer.email === email) conflictingFields.push('email');
+        if (existingFreelancer.username === username) conflictingFields.push('username');
+    
+        const message = `An account with this ${conflictingFields.join(' and ')} already exists.`;
+        throw new ConflictError(message.trim());
+    }
+}
+
+//
+// Services
+//
 
 const getAllFreelancers = async () => {
     return await Freelancer.findAll();
 };
 
 const createFreelancer = async ({ name, username, email, password, phone, state, birthDate }) => {
-    const existingFreelancer = await Freelancer.findOne({
-        where: {
-            [Op.or]: [ { email }, { phone }, { username } ]
-        }
-    });
-    if (existingFreelancer) {
-        let message = 'An account with this ';
-        if (existingFreelancer.email === email) message += 'email ';
-        if (existingFreelancer.phone === phone) message += 'phone ';
-        if (existingFreelancer.username === username) message += 'username ';
-        message += 'already exists.';
-        throw new Error(message.trim());
-    }
+    await verifyUniqueFields(email, username);
 
     const newFreelancer = await Freelancer.create({ name, username, email, password, phone, state, birthDate });
     return newFreelancer;
@@ -27,6 +40,8 @@ const createFreelancer = async ({ name, username, email, password, phone, state,
 const updateFreelancer = async ( id, { name, username, email, password, phone, state, birthDate }) => {
     const freelancer = await Freelancer.findByPk(id);
     if (!freelancer) throw new Error('Freelancer not found');
+
+    await verifyUniqueFields(email, username);
 
     await freelancer.update({ name, username, email, password, phone, state, birthDate });
     return await Freelancer.findByPk(id); // Retorna o objeto atualizado
