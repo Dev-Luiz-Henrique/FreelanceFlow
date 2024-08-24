@@ -13,7 +13,7 @@ const getAllOwners = async (req, res, next) => {
 
         res.status(200).json(owners);
     } catch (error) {
-        console.error("Error fetching owners:", error);
+        console.error("Error fetching owners:");
         handleHttpError(res, error);
     }
 };
@@ -82,7 +82,7 @@ const updateOwnerById = async (req, res, next) => {
             data: updatedOwner,
         });
     } catch (error) {
-        console.error("Error updating owner:", error);
+        console.error("Error updating owner:");
         handleHttpError(res, error);
     }
 };
@@ -110,7 +110,7 @@ const deleteOwnerById = async (req, res, next) => {
         await OwnerService.deleteOwner(id);
         res.status(204).json();
     } catch (error) {
-        console.error("Error deleting owner by ID:", error);
+        console.error("Error deleting owner by ID:");
         handleHttpError(res, error);
     }
 };
@@ -137,7 +137,7 @@ const getOwnerById = async (req, res, next) => {
 
         res.status(200).json(owner);
     } catch (error) {
-        console.error("Error fetching owner by ID:", error);
+        console.error("Error fetching owner by ID:");
         handleHttpError(res, error);
     }
 };
