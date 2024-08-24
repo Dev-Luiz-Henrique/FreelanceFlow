@@ -44,9 +44,7 @@ const createFreelancer = async ({ name, username, email, password, phone, state,
 };
 
 const updateFreelancer = async ( id, { name, username, email, password, phone, state, birthDate }) => {
-    const freelancer = await Freelancer.findByPk(id);
-    if (!freelancer) throw new Error('Freelancer not found');
-
+    const freelancer = await validateFreelancerExists(id);
     await verifyUniqueFields(email, username);
 
     await freelancer.update({ name, username, email, password, phone, state, birthDate });
@@ -54,13 +52,12 @@ const updateFreelancer = async ( id, { name, username, email, password, phone, s
 };
 
 const deleteFreelancer = async (id) => {
-    const freelancer = await Freelancer.findByPk(id);
-    if (!freelancer) throw new Error('Freelancer not found');
+    const freelancer = await validateFreelancerExists(id);
     await freelancer.destroy();
 };
 
 const findFreelancerById = async (id) => {
-    return await Freelancer.findByPk(id);
+    return await validateFreelancerExists(id);
 };
 
 module.exports = {
