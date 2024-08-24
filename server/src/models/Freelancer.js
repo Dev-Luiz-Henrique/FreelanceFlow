@@ -15,6 +15,7 @@ function freelancerModel(sequelize) {
         username: {
             type: DataTypes.STRING,
             allowNull: false,
+            unique: true,
         },
         email: {
             type: DataTypes.STRING,
