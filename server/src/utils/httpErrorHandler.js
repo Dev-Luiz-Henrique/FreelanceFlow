@@ -1,12 +1,14 @@
-function handleHttpError(res, error, statusCode = 500) {
+function handleHttpError(res, error) {
     const errorResponse = {
-        statusCode,
-        error: "Server Error",
+        name: error.name || "Server Error",
+        message: error.message || "An unexpected error occurred.",
+        details:
+            process.env.NODE_ENV === "development" ? error.stack : undefined,
     };
 
-    if (process.env.NODE_ENV === "development")
-        errorResponse.details = error.message;
-    res.status(statusCode).json(errorResponse);
+    if(process.env.NODE_ENV === 'development') 
+        console.error(error);
+    res.status(error.statusCode || 500).json(errorResponse);
 }
 
 module.exports = handleHttpError;
