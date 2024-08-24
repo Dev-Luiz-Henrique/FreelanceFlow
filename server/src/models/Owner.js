@@ -27,7 +27,6 @@ function ownerModel(sequelize) {
         phone: {
             type: DataTypes.STRING,
             allowNull: false,
-            unique: true,
         },
         state: {
             type: DataTypes.STRING,
