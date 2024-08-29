@@ -1,7 +1,7 @@
 const { Freelancer } = require("../config/sqlContext");
 const { ProfileValidator, DatabaseChecker } = require("../utils/validations");
 
-async function validateFreelancerData({ email, phone, password, birthDate }) {
+async function validateFreelancerData({ email, phone, password, birthDate, username }) {
     ProfileValidator.validateEmailFormat(email);
     ProfileValidator.validatePhoneFormat(phone);
     ProfileValidator.validatePasswordStrength(password);
@@ -18,7 +18,7 @@ const getAllFreelancers = async () => {
 };
 
 const createFreelancer = async ({ name, username, email, password, phone, state, birthDate }) => {
-    await validateFreelancerData({ email, phone, password, birthDate });
+    await validateFreelancerData({ email, phone, password, birthDate, username });
 
     const newFreelancer = await Freelancer.create({ name, username, email, password, phone, state, birthDate });
     return newFreelancer;
@@ -26,10 +26,12 @@ const createFreelancer = async ({ name, username, email, password, phone, state,
 
 const updateFreelancer = async (id, { name, username, email, password, phone, state, birthDate }) => {
     const freelancer = await DatabaseChecker.checkExists(Freelancer, id, 'Freelancer not found');
-    await DatabaseChecker.checkUniqueFields(Freelancer, [
-        { name: 'email', value: email },
-        { name: 'username', value: username }
-    ]);
+
+    const uniqueFields = [];
+    if (email) uniqueFields.push({ name: 'email', value: email });
+    if (username) uniqueFields.push({ name: 'username', value: username });
+    if (uniqueFields.length > 0) 
+        await DatabaseChecker.checkUniqueFields(Freelancer, uniqueFields);
 
     await freelancer.update({ name, username, email, password, phone, state, birthDate });
     return await Freelancer.findByPk(id); // Return the updated object
