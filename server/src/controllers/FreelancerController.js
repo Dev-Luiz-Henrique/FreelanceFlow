@@ -1,15 +1,12 @@
 const FreelancerService = require('../services/FreelancerService');
+const { NoContentError, ValidationError, NotFoundError } = require('../utils/errors');
 const handleHttpError = require('../utils/httpErrorHandler');
 
 const getAllFreelancers = async (req, res, next) => {
     try {
         const freelancers = await FreelancerService.getAllFreelancers();
-        if (freelancers.length == 0) {
-            return res.status(204).json({
-                statusCode: 204,
-                message: "No freelancers found",
-            });
-        }
+        if (freelancers.length == 0) 
+            throw new NoContentError("No freelancers found");
         res.status(200).json(freelancers);
     }
     catch (error) {
@@ -21,13 +18,8 @@ const getAllFreelancers = async (req, res, next) => {
 const createFreelancer = async (req, res, next) => {
     try {
         const { name, username, email, password, phone, state, birthDate } = req.body; 
-        if (!name || !username || !email || !password || !phone || !state || !birthDate) {
-            return res.status(400).json({
-                statusCode: 400,
-                error: "Bad Request",
-                message: "All fields are required.",
-            });
-        }
+        if (!name || !username || !email || !password || !phone || !state || !birthDate)
+            throw new ValidationError("All fields are required");
 
         const newFreelancer = await FreelancerService.createFreelancer({ 
             name, username, email, password, phone, state, birthDate
@@ -42,25 +34,14 @@ const createFreelancer = async (req, res, next) => {
 const updateFreelancerById = async (req, res, next) => {
     try {
         const { id } = req.params;
-        if (!id) {
-            return res.status(400).json({
-                statusCode: 400,
-                error: "Bad Request",
-                message: "ID is required.",
-            });
-        }
-        
+        if (!id) throw new ValidationError("ID is required");
+          
         const { name, username, email, password, phone, state, birthDate } = req.body;
-        if (!name && !username && !email && !password && !phone && !state && !birthDate) {
-            return res.status(400).json({
-                statusCode: 400,
-                error: "Bad Request",
-                message: "At least one field is required.",
-            });
-        }
+        if (!name && !username && !email && !password && !phone && !state && !birthDate) 
+            throw new ValidationError("At least one field is required");
 
-        const updatedFreelancer = await FreelancerService.updateFreelancer({ 
-            id, name, username, email, password, phone, state, birthDate 
+        const updatedFreelancer = await FreelancerService.updateFreelancer( id, { 
+            name, username, email, password, phone, state, birthDate 
         });
         res.status(200).json({
             statusCode: 200,
@@ -76,13 +57,7 @@ const updateFreelancerById = async (req, res, next) => {
 const deleteFreelancerById = async (req, res, next) => {
     try {
         const { id } = req.params;
-        if (!id) {
-            return res.status(400).json({
-                statusCode: 400,
-                error: "Bad Request",
-                message: "ID is required.",
-            });
-        }
+        if (!id) throw new ValidationError("ID is required");
 
         await FreelancerService.deleteFreelancer(id);
         res.status(200).json({
@@ -98,22 +73,11 @@ const deleteFreelancerById = async (req, res, next) => {
 const getFreelancerById = async (req, res, next) => {
     try {
         const { id } = req.params;
-        if (!id) {
-            return res.status(400).json({
-                statusCode: 400,
-                error: "Bad Request",
-                message: "ID is required.",
-            });
-        }
+        if (!id) throw new ValidationError("ID is required");
 
         const freelancer = await FreelancerService.findFreelancerById(id);
-        if (!freelancer) {
-            return res.status(404).json({
-                statusCode: 404,
-                error: "Not Found",
-                message: "Freelancer not found.",
-            });
-        }
+        if (!freelancer) throw new NotFoundError("Freelancer not found");
+
         res.status(200).json(freelancer);
     } catch (error) {
         console.error("Error fetching freelancer by ID:");
