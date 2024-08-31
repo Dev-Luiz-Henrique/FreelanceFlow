@@ -12,6 +12,12 @@ app.use(express.json());
 database.authDB();
 database.syncDB();
 
+if (process.env.NODE_ENV !== 'test') {   
+    database.authDB();
+    database.syncDB();
+}
+
+
 // Importando as rotas
 const ownerRoutes = require('./routes/OwnerRoute');
 const freelancerRoutes = require('./routes/FreelancerRoute');

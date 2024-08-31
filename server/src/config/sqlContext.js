@@ -10,12 +10,16 @@ const sequelize = new Sequelize(
     {
         host: process.env.SQL_DB_HOST,
         dialect: "mssql",
-        port: process.env.SQL_DB_PORT,
+        port: process.env.SQL_DB_PORT
     }
 );
 
 // Verifica se é possível estabelecer uma conexão com o banco de dados
 const authDB = async () => {
+    if (process.env.NODE_ENV === 'test') {
+        console.log('Skipping database connection for test environment');
+        return;
+    }
     try {
         await sequelize.authenticate();
         console.log("Connection has been established successfully.");
@@ -24,12 +28,12 @@ const authDB = async () => {
     }
 };
 
-// Carrega os modelos
-const Owner = OwnerModel(sequelize);
-const Freelancer = FreelancerModel(sequelize);
-
 // Sincroniza os modelos com o banco de dados
 const syncDB = async () => {
+    if (process.env.NODE_ENV === 'test') {
+        console.log('Skipping database connection for test environment');
+        return;
+    }
     try {
         await sequelize.sync(); // Cria as tabelas se elas não existirem
         console.log('Database synchronized');
@@ -38,10 +42,24 @@ const syncDB = async () => {
     }
 };
 
+const closeDB = async () => {
+    try {
+        await sequelize.close();
+        console.log("Connection has been closed successfully.");
+    } catch (error) {
+        console.error("Error closing the connection:", error);
+    }
+};
+
+// Models
+const Owner = OwnerModel(sequelize);
+const Freelancer = FreelancerModel(sequelize);
+
 module.exports = {
     sequelize,
     authDB,
     syncDB,
+    closeDB,
     Owner,
     Freelancer,
 };
