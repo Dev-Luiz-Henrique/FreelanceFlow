@@ -10,7 +10,6 @@ const getAllFreelancers = async (req, res, next) => {
         res.status(200).json(freelancers);
     }
     catch (error) {
-        console.error("Error fetching all freelancers:");
         handleHttpError(res, error);
     }
 };
@@ -26,7 +25,6 @@ const createFreelancer = async (req, res, next) => {
         });
         res.status(201).json(newFreelancer);
     } catch (error) {
-        console.error("Error creating freelancer:");
         handleHttpError(res, error);
     }
 }
@@ -49,7 +47,6 @@ const updateFreelancerById = async (req, res, next) => {
             data: updatedFreelancer,
         });
     } catch (error) {
-        console.error("Error updating freelancer:");
         handleHttpError(res, error);
     }
 }
@@ -65,7 +62,6 @@ const deleteFreelancerById = async (req, res, next) => {
             message: "Freelancer deleted successfully",
         });
     } catch (error) {
-        console.error("Error deleting freelancer:");
         handleHttpError(res, error);
     }
 }
@@ -80,7 +76,6 @@ const getFreelancerById = async (req, res, next) => {
 
         res.status(200).json(freelancer);
     } catch (error) {
-        console.error("Error fetching freelancer by ID:");
         handleHttpError(res, error);
     }
 }

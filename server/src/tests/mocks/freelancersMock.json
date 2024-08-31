@@ -1,0 +1,49 @@
+[
+    {
+        "id": 1,
+        "name": "John Doe",
+        "username": "john_doe",
+        "email": "johndoe@example123.com",
+        "password": "Secure#password123",
+        "phone": "11939194999",
+        "state": "São Paulo",
+        "birthDate": "1990-05-15T03:00:00.000Z"
+    },
+    {
+        "id": 2,
+        "name": "Jane Doe",
+        "username": "jane_doe",
+        "email": "janedoe@example123.com",
+        "password": "Secure#password123",
+        "phone": "11939194999",
+        "state": "São Paulo",
+        "birthDate": "1990-05-15T03:00:00.000Z"
+    },
+    {
+        "id": 3,
+        "name": "Alice Silva",
+        "username": "alice_silva",
+        "email": "alice.silva@example.com",
+        "phone": "11987654321",
+        "state": "Rio de Janeiro",
+        "birthDate": "1995-07-28T00:00:00.000Z"
+    },
+    {
+        "id": 4,
+        "name": "Bob Santos",
+        "username": "bob_santos",
+        "email": "bob.santos@example.com",
+        "phone": "12345678901",
+        "state": "Minas Gerais",
+        "birthDate": "1988-12-01T00:00:00.000Z"
+    },
+    {
+        "id": 5,
+        "name": "Charlie Costa",
+        "username": "charlie_costa",
+        "email": "charlie.costa@example.com",
+        "phone": "19876543210",
+        "state": "Bahia",
+        "birthDate": "2000-03-10T00:00:00.000Z"
+    }
+]
