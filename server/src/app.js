@@ -8,22 +8,28 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// Conectando ao banco de dados
-database.authDB();
-database.syncDB();
-
 if (process.env.NODE_ENV !== 'test') {   
     database.authDB();
     database.syncDB();
 }
 
-
-// Importando as rotas
+// Importing routes
 const ownerRoutes = require('./routes/OwnerRoute');
 const freelancerRoutes = require('./routes/FreelancerRoute');
 
-// Usando as rotas
+// Using routes
 app.use('/', ownerRoutes);
 app.use('/', freelancerRoutes);
+
+
+const handleHttpError = require("./middlewares/httpErrorHandler.js");
+const NotFoundError = require("./utils/errors/NotFoundError.js");
+
+// Middleware to capture undefined routes
+app.use((req, res, next) => {
+    next(new NotFoundError(`Route ${req.originalUrl} not found`));
+});
+// Error handling middleware
+app.use(handleHttpError);
 
 module.exports = app;
