@@ -1,5 +1,5 @@
 const OwnerService = require("../services/OwnerService");
-const handleHttpError = require('../utils/httpErrorHandler');
+const handleHttpError = require('../middlewares/httpErrorHandler');
 
 const getAllOwners = async (req, res, next) => {
     try {

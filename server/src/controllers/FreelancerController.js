@@ -1,6 +1,6 @@
 const FreelancerService = require('../services/FreelancerService');
 const { NoContentError, ValidationError, NotFoundError } = require('../utils/errors');
-const handleHttpError = require('../utils/httpErrorHandler');
+const handleHttpError = require('../middlewares/httpErrorHandler');
 
 const getAllFreelancers = async (req, res, next) => {
     try {
@@ -10,7 +10,7 @@ const getAllFreelancers = async (req, res, next) => {
         res.status(200).json(freelancers);
     }
     catch (error) {
-        handleHttpError(res, error);
+        handleHttpError(error, req, res);
     }
 };
 
@@ -25,58 +25,44 @@ const createFreelancer = async (req, res, next) => {
         });
         res.status(201).json(newFreelancer);
     } catch (error) {
-        handleHttpError(res, error);
+        handleHttpError(error, req, res);
     }
 }
 
 const updateFreelancerById = async (req, res, next) => {
     try {
         const { id } = req.params;
-        if (!id) throw new ValidationError("ID is required");
-          
         const { name, username, email, password, phone, state, birthDate } = req.body;
         if (!name && !username && !email && !password && !phone && !state && !birthDate) 
             throw new ValidationError("At least one field is required");
 
         const updatedFreelancer = await FreelancerService.updateFreelancer( id, { 
             name, username, email, password, phone, state, birthDate 
-        });
-        res.status(200).json({
-            statusCode: 200,
-            message: "Freelancer updated successfully",
-            data: updatedFreelancer,
-        });
+        }); 
+        res.status(200).json(updatedFreelancer);
     } catch (error) {
-        handleHttpError(res, error);
+        handleHttpError(error, req, res);
     }
 }
 
 const deleteFreelancerById = async (req, res, next) => {
     try {
         const { id } = req.params;
-        if (!id) throw new ValidationError("ID is required");
-
         await FreelancerService.deleteFreelancer(id);
-        res.status(200).json({
-            statusCode: 200,
-            message: "Freelancer deleted successfully",
-        });
+        res.status(204).send();
     } catch (error) {
-        handleHttpError(res, error);
+        handleHttpError(error, req, res);
     }
 }
 
 const getFreelancerById = async (req, res, next) => {
     try {
         const { id } = req.params;
-        if (!id) throw new ValidationError("ID is required");
-
         const freelancer = await FreelancerService.findFreelancerById(id);
         if (!freelancer) throw new NotFoundError("Freelancer not found");
-
         res.status(200).json(freelancer);
     } catch (error) {
-        handleHttpError(res, error);
+        handleHttpError(error, req, res);
     }
 }
 
