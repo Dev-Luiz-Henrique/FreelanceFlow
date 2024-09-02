@@ -1,112 +1,139 @@
 const statesEnum = Object.freeze({
     ACRE: {
+        id: 1,
         name: "Acre",
-        value: "AC",
+        code: "AC",
     },
     ALAGOAS: {
+        id: 2,
         name: "Alagoas",
-        value: "AL",
+        code: "AL",
     },
     AMAZONAS: {
+        id: 3,
         name: "Amazonas",
-        value: "AM",
+        code: "AM",
     },
     AMAPA: {
+        id: 4,
         name: "Amapá",
-        value: "AP",
+        code: "AP",
     },
     BAHIA: {
+        id: 5,
         name: "Bahia",
-        value: "BA",
+        code: "BA",
     },
     CEARA: {
+        id: 6,
         name: "Ceará",
-        value: "CE",
+        code: "CE",
     },
     DISTRITO_FEDERAL: {
+        id: 7,
         name: "Distrito Federal",
-        value: "DF",
+        code: "DF",
     },
     ESPIRITO_SANTO: {
+        id: 8,
         name: "Espírito Santo",
-        value: "ES",
+        code: "ES",
     },
     GOIAS: {
+        id: 9,
         name: "Goiás",
-        value: "GO",
+        code: "GO",
     },
     MARANHAO: {
+        id: 10,
         name: "Maranhão",
-        value: "MA",
+        code: "MA",
     },
     MATO_GROSSO: {
+        id: 11,
         name: "Mato Grosso",
-        value: "MT",
+        code: "MT",
     },
     MATO_GROSSO_DO_SUL: {
+        id: 12,
         name: "Mato Grosso do Sul",
-        value: "MS",
+        code: "MS",
     },
     MINAS_GERAIS: {
+        id: 13,
         name: "Minas Gerais",
-        value: "MG",
+        code: "MG",
     },
     PARA: {
+        id: 14,
         name: "Pará",
-        value: "PA",
+        code: "PA",
     },
     PARAIBA: {
+        id: 15,
         name: "Paraíba",
-        value: "PB",
+        code: "PB",
     },
     PARANA: {
+        id: 16,
         name: "Paraná",
-        value: "PR",
+        code: "PR",
     },
     PERNAMBUCO: {
+        id: 17,
         name: "Pernambuco",
-        value: "PE",
+        code: "PE",
     },
     PIAUI: {
+        id: 18,
         name: "Piauí",
-        value: "PI",
+        code: "PI",
     },
     RIO_DE_JANEIRO: {
+        id: 19,
         name: "Rio de Janeiro",
-        value: "RJ",
+        code: "RJ",
     },
     RIO_GRANDE_DO_NORTE: {
+        id: 20,
         name: "Rio Grande do Norte",
-        value: "RN",
+        code: "RN",
     },
     RIO_GRANDE_DO_SUL: {
+        id: 21,
         name: "Rio Grande do Sul",
-        value: "RS",
+        code: "RS",
     },
     RONDONIA: {
+        id: 22,
         name: "Rondônia",
-        value: "RO",
+        code: "RO",
     },
     RORAIMA: {
+        id: 23,
         name: "Roraima",
-        value: "RR",
+        code: "RR",
     },
     SANTA_CATARINA: {
+        id: 24,
         name: "Santa Catarina",
-        value: "SC",
+        code: "SC",
     },
     SAO_PAULO: {
+        id: 25,
         name: "São Paulo",
-        value: "SP",
+        code: "SP",
     },
     SERGIPE: {
+        id: 26,
         name: "Sergipe",
-        value: "SE",
+        code: "SE",
     },
     TOCANTINS: {
+        id: 27,
         name: "Tocantins",
-        value: "TO",
+        code: "TO",
     },
 });
 
-export default statesEnum;
+module.exports = statesEnum;

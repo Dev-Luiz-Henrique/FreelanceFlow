@@ -14,13 +14,14 @@ if (process.env.NODE_ENV !== 'test') {
 }
 
 // Importing routes
-const ownerRoutes = require('./routes/OwnerRoute');
-const freelancerRoutes = require('./routes/FreelancerRoute');
+const OwnerRoutes = require('./routes/OwnerRoute');
+const FreelancerRoutes = require('./routes/FreelancerRoute');
+const StateRoute = require('./routes/StateRoute');
 
 // Using routes
-app.use('/', ownerRoutes);
-app.use('/', freelancerRoutes);
-
+app.use('/', OwnerRoutes);
+app.use('/', FreelancerRoutes);
+app.use('/', StateRoute);
 
 const handleHttpError = require("./middlewares/httpErrorHandler.js");
 const NotFoundError = require("./utils/errors/NotFoundError.js");
