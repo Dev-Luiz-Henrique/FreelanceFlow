@@ -1,14 +1,31 @@
-import React from 'react';
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import '../styles/SignUpForm.scss';
 import { Eye, EyeOff } from 'lucide-react';
-import statesEnum from '../types/StatesEnum';
+import '../styles/SignUpForm.scss';
+const API_URL = import.meta.env.VITE_API_BASE_URL;
 
 const SignUpForm = () => {
-    const [passwordToggler, setPasswordToggler] = React.useState(false);
+    const [passwordToggler, setPasswordToggler] = useState(false);
     const togglePassword = () => { 
         setPasswordToggler(!passwordToggler);
     };
+
+    const [states, setStates] = useState([]);
+    useEffect(() => {
+        const fetchStates = async () => {
+            try {
+                const response = await fetch(`${API_URL}/states`);
+                if (!response.ok)
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                const fetchedData = await response.json();
+                setStates(fetchedData);
+            } catch (error) {
+                console.error("Error fetching states:", error);
+            }
+        };
+
+        fetchStates();
+    }, []);
     
     return (
         <form className='signup-form'>
@@ -56,8 +73,8 @@ const SignUpForm = () => {
             <div className='signup-form__state'> 
                 <label htmlFor='state'>Estado:</label>
                 <select id='state'>
-                    {Object.values(statesEnum).map((state) => (
-                        <option key={state.value} value={state.value}>
+                    {states.map((state) => ( 
+                        <option key={state.id} value={state.id}>
                             {state.name}
                         </option>
                     ))}
@@ -66,7 +83,7 @@ const SignUpForm = () => {
 
             <div>
                 <span className='signup-form__radio'>
-                    <input type='radio' name='role' id='freelancer' value='freelancer' checked />
+                    <input type='radio' name='role' id='freelancer' value='freelancer' defaultChecked />
                     <label htmlFor='freelancer' className='signup__radio__label' >Freelancer</label>
                 </span>
                 <span className='signup-form__radio'>
