@@ -1,6 +1,6 @@
 const Sequelize = require("sequelize");
 const OwnerModel = require("../models/Owner");
-const FreelancerModel = require("../models/Freelancer");
+const { freelancerModel } = require("../models/Freelancer");
 
 // Cria uma instância de conexão com um banco de dados
 const sequelize = new Sequelize(
@@ -16,10 +16,6 @@ const sequelize = new Sequelize(
 
 // Verifica se é possível estabelecer uma conexão com o banco de dados
 const authDB = async () => {
-    if (process.env.NODE_ENV === 'test') {
-        console.log('Skipping database connection for test environment');
-        return;
-    }
     try {
         await sequelize.authenticate();
         console.log("Connection has been established successfully.");
@@ -30,10 +26,6 @@ const authDB = async () => {
 
 // Sincroniza os modelos com o banco de dados
 const syncDB = async () => {
-    if (process.env.NODE_ENV === 'test') {
-        console.log('Skipping database connection for test environment');
-        return;
-    }
     try {
         await sequelize.sync(); // Cria as tabelas se elas não existirem
         console.log('Database synchronized');
@@ -53,7 +45,7 @@ const closeDB = async () => {
 
 // Models
 const Owner = OwnerModel(sequelize);
-const Freelancer = FreelancerModel(sequelize);
+const Freelancer = freelancerModel(sequelize);
 
 module.exports = {
     sequelize,
