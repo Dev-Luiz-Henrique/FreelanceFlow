@@ -2,9 +2,9 @@ require('dotenv').config();
 const express = require("express");
 const cors = require("cors");
 const database = require("./config/sqlContext.js");
+const routes = require('./routes');
 
 const app = express();
-
 app.use(cors());
 app.use(express.json());
 
@@ -13,15 +13,8 @@ if (process.env.NODE_ENV !== 'test') {
     database.syncDB();
 }
 
-// Importing routes
-const OwnerRoutes = require('./routes/OwnerRoute');
-const FreelancerRoutes = require('./routes/FreelancerRoute');
-const StateRoute = require('./routes/StateRoute');
-
-// Using routes
-app.use('/', OwnerRoutes);
-app.use('/', FreelancerRoutes);
-app.use('/', StateRoute);
+// Initialize routes
+routes(app);
 
 const handleHttpError = require("./middlewares/httpErrorHandler.js");
 const NotFoundError = require("./utils/errors/NotFoundError.js");
