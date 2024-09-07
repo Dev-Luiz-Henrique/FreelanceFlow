@@ -1,4 +1,4 @@
-const ProjectAreaEnum = require("../services/ProjectAreaService");
+const ProjectAreaService = require("../services/ProjectAreaService");
 const handleHttpError = require("../middlewares/httpErrorHandler");
 
 /**
