@@ -1,46 +1,64 @@
 const { DataTypes } = require("sequelize");
 
+const ownerAttributes = {
+    id: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true,
+    },
+    username: {
+        type: DataTypes.STRING(30),
+        unique: true,
+        allowNull: false,
+    },
+    name: {
+        type: DataTypes.STRING(30),
+        allowNull: false,
+    },
+    email: {
+        type: DataTypes.STRING(30),
+        unique: true,
+        allowNull: false,
+    },
+    password: {
+        type: DataTypes.STRING(255),
+        allowNull: false,
+    },
+    phone: {
+        type: DataTypes.CHAR(11),
+        allowNull: false,
+    },
+    state: {
+        type: DataTypes.TINYINT,
+        allowNull: false,
+    },
+    birthdate: {
+        type: DataTypes.DATE,
+        allowNull: false,
+    },
+    bio: {
+        type: DataTypes.STRING(300),
+    },
+    profile_Picture: {
+        type: DataTypes.STRING(255),
+    },
+    linkedIn: {
+        type: DataTypes.STRING(100),
+    },
+    created_at: {
+        type: DataTypes.DATE,
+        allowNull: false,
+    },
+};
+
 function ownerModel(sequelize) {
-    return sequelize.define("Owner", {
-        id: {
-            type: DataTypes.INTEGER,
-            primaryKey: true,
-            autoIncrement: true,
-        },
-        name: {
-            type: DataTypes.STRING,
-            allowNull: false,
-        },
-        username: {
-            type: DataTypes.STRING,
-            allowNull: false,
-            unique: true,
-        },
-        email: {
-            type: DataTypes.STRING,
-            allowNull: false,
-            unique: true,
-        },
-        password: {
-            type: DataTypes.STRING,
-            allowNull: false,
-        },
-        phone: {
-            type: DataTypes.STRING,
-            allowNull: false,
-        },
-        state: {
-            type: DataTypes.STRING,
-            allowNull: false,
-        },
-        birthDate: {
-            type: DataTypes.DATE,
-            allowNull: false,
-        }
-    }, {
+    return sequelize.define("Owner", ownerAttributes, {
         freezeTableName: true,
         timestamps: false,
     });
 }
 
-module.exports = ownerModel;
+module.exports = {
+    ownerModel,
+    ownerAttributes
+};
