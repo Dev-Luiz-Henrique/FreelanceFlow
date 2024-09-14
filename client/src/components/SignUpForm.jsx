@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Eye, EyeOff } from 'lucide-react';
+import { StatesEnum } from 'freelanceflow-shared/enums';
 import '../styles/SignUpForm.scss';
 const API_URL = import.meta.env.VITE_API_BASE_URL;
 
@@ -10,22 +11,7 @@ const SignUpForm = () => {
         setPasswordToggler(!passwordToggler);
     };
 
-    const [states, setStates] = useState([]);
-    useEffect(() => {
-        const fetchStates = async () => {
-            try {
-                const response = await fetch(`${API_URL}/states`);
-                if (!response.ok)
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                const fetchedData = await response.json();
-                setStates(fetchedData);
-            } catch (error) {
-                console.error("Error fetching states:", error);
-            }
-        };
-
-        fetchStates();
-    }, []);
+    const states = StatesEnum.getAllStates();
     
     return (
         <form className='signup-form'>
