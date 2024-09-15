@@ -17,5 +17,9 @@
     "exports": {
       ".": "./index.js",
       "./enums": "./lib/enums/index.js"
-    }
+    },
+    "files": [
+      "index.js",
+      "lib/"
+    ]
 }
