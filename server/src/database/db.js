@@ -3,8 +3,11 @@ const Sequelize = require("sequelize");
 const fs = require("fs");
 const path = require('path');
 
-const sequelize = new Sequelize(
-    process.env.SQL_DB_NAME,
+/**
+ * Creates a connection to the 'master' database for initial setup.
+ */
+const sequelizeMaster = new Sequelize(
+    'master',
     process.env.SQL_DB_USER,
     process.env.SQL_DB_PASSWORD,
     {
@@ -15,13 +18,30 @@ const sequelize = new Sequelize(
 );
 
 /**
+ * Creates a connection to the newly created database.
+ */
+function getSequelizeForFreelanceFlow() {
+    return new Sequelize(
+        process.env.SQL_DB_NAME,
+        process.env.SQL_DB_USER,
+        process.env.SQL_DB_PASSWORD,
+        {
+            host: process.env.SQL_DB_HOST,
+            dialect: "mssql",
+            port: process.env.SQL_DB_PORT,
+        }
+    );
+}
+
+/**
  * Executes a single SQL script file.
+ * @param {Sequelize} sequelizeInstance - Sequelize instance to use for the query.
  * @param {string} scriptPath - Path to the SQL script file.
  */
-async function runScript(scriptPath) {
+async function runScript(sequelizeInstance, scriptPath) {
     try {
         const script = fs.readFileSync(scriptPath, "utf-8");
-        await sequelize.query(script);
+        await sequelizeInstance.query(script);
         console.log(`Script executed successfully: ${path.basename(scriptPath)}`);
     } catch (err) {
         console.error(`Error executing script ${path.basename(scriptPath)}:`, err);
@@ -29,39 +49,38 @@ async function runScript(scriptPath) {
 }
 
 /**
- * Executes all SQL script files in a given folder.
- * @param {string} folderPath - Path to the folder containing SQL scripts.
- */
-async function runAllScriptsFromFolder(folderPath) {
-    const files = fs.readdirSync(folderPath);
-
-    for (const file of files) {
-        const filePath = path.join(folderPath, file);
-        if (fs.statSync(filePath).isFile() && file.endsWith(".sql"))
-            await runScript(filePath);
-    }
-}
-
-/**
- * Runs all migration and seed scripts.
+ * Runs the setup and migration scripts.
  */
 async function runAllScripts() {
+    let sequelizeFreelanceFlow;
     try {
-        await sequelize.authenticate();
-        console.log("Connection to the database has been established successfully.");
+        // Connect to the 'master' database and create 'FreelanceFlow'
+        await sequelizeMaster.authenticate();
+        console.log("Connected to the 'master' database.");
 
-        console.log("Running setup script...");
-        await runScript(path.join(__dirname, "scripts/setup.sql"));
+        console.log("Running setup script to create the new database...");
+        await runScript(sequelizeMaster, path.join(__dirname, "scripts/setup.sql"));
 
-        console.log("Starting migration scripts...");
-        await runAllScriptsFromFolder(path.join(__dirname, "migrations"));
+        // Close 'master' Reconnect using the new database
+        await sequelizeMaster.close();
+        sequelizeFreelanceFlow = getSequelizeForFreelanceFlow();
+        await sequelizeFreelanceFlow.authenticate();
+        console.log(`Connected to the newly created database: ${process.env.SQL_DB_NAME}`);
 
-        console.log("Starting seed scripts...");
-        await runAllScriptsFromFolder(path.join(__dirname, "seeds"));
+        // Run migrations in the new database
+        console.log("Running migration scripts...");
+        await runScript(sequelizeFreelanceFlow, path.join(__dirname, "scripts/migrations.sql"));
+
+        // Run seed scripts
+        // console.log("Running seed scripts...");
+        // await runScript(sequelizeFreelanceFlow, path.join(__dirname, "scripts/seeds.sql"));
     } catch (err) {
         console.error("Error during script execution:", err);
     } finally {
-        await sequelize.close();
+        await sequelizeMaster.close();
+        if (sequelizeFreelanceFlow) {
+            await sequelizeFreelanceFlow.close();
+        }
     }
 }
 
