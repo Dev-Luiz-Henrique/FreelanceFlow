@@ -1,6 +1,6 @@
 const Sequelize = require("sequelize");
-const OwnerModel = require("../models/Owner");
-const { freelancerModel } = require("../models/Freelancer");
+const Freelancer = require("../models/Freelancer");
+const Owner = require("../models/Owner");
 
 // Cria uma instância de conexão com um banco de dados
 const sequelize = new Sequelize(
@@ -10,7 +10,11 @@ const sequelize = new Sequelize(
     {
         host: process.env.SQL_DB_HOST,
         dialect: "mssql",
-        port: process.env.SQL_DB_PORT
+        port: process.env.SQL_DB_PORT,
+        define: {
+            freezeTableName: true,
+            timestamps: false
+        }
     }
 );
 
@@ -44,8 +48,8 @@ const closeDB = async () => {
 };
 
 // Models
-const Owner = OwnerModel(sequelize);
-const Freelancer = freelancerModel(sequelize);
+Owner.init(sequelize);
+Freelancer.init(sequelize);
 
 module.exports = {
     sequelize,
