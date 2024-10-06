@@ -1,5 +1,5 @@
-const OwnerService = require("../services/OwnerService");
-const handleHttpError = require('../middlewares/httpErrorHandler');
+import OwnerService from "../services/OwnerService.js";
+import handleHttpError from '../middlewares/httpErrorHandler.js';
 
 const getAllOwners = async (req, res, next) => {
     try {
@@ -142,7 +142,7 @@ const getOwnerById = async (req, res, next) => {
     }
 };
 
-module.exports = {
+export {
     getAllOwners,
     createOwner,
     updateOwnerById,

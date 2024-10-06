@@ -1,6 +1,6 @@
-const FreelancerService = require('../services/FreelancerService');
-const { NoContentError, ValidationError, NotFoundError } = require('../utils/errors');
-const handleHttpError = require('../middlewares/httpErrorHandler');
+import FreelancerService from '../services/FreelancerService.js';
+import { NoContentError, ValidationError, NotFoundError } from '../utils/errors/index.js';
+import handleHttpError from '../middlewares/httpErrorHandler.js';
 
 const getAllFreelancers = async (req, res, next) => {
     try {
@@ -66,10 +66,10 @@ const getFreelancerById = async (req, res, next) => {
     }
 }
 
-module.exports = {
+export {
     getAllFreelancers,
     createFreelancer,
     updateFreelancerById,
     deleteFreelancerById,
     getFreelancerById,
-}
+};

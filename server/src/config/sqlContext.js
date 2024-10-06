@@ -1,6 +1,6 @@
-const Sequelize = require("sequelize");
-const Freelancer = require("../models/Freelancer");
-const Owner = require("../models/Owner");
+import { Sequelize } from "sequelize";
+import Freelancer from "../models/Freelancer.js";
+import Owner from "../models/Owner.js";
 
 // Cria uma instância de conexão com um banco de dados
 const sequelize = new Sequelize(
@@ -51,7 +51,7 @@ const closeDB = async () => {
 Owner.init(sequelize);
 Freelancer.init(sequelize);
 
-module.exports = {
+export {
     sequelize,
     authDB,
     syncDB,

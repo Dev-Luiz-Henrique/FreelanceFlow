@@ -1,29 +1,29 @@
-require('dotenv').config();
-const express = require("express");
-const cors = require("cors");
-const database = require("./config/sqlContext.js");
-const routes = require('./routes');
+import 'dotenv/config';
+import express from 'express';
+import cors from 'cors';
+import { authDB, syncDB } from './config/sqlContext.js';
+import routes from './routes/index.js';
+import handleHttpError from './middlewares/httpErrorHandler.js';
+import NotFoundError from './utils/errors/NotFoundError.js';
 
 const app = express();
 app.use(cors());
 app.use(express.json());
 
 if (process.env.NODE_ENV !== 'test') {   
-    database.authDB();
-    database.syncDB();
+    authDB();
+    syncDB();
 }
 
 // Initialize routes
 routes(app);
 
-const handleHttpError = require("./middlewares/httpErrorHandler.js");
-const NotFoundError = require("./utils/errors/NotFoundError.js");
-
 // Middleware to capture undefined routes
 app.use((req, res, next) => {
     next(new NotFoundError(`Route ${req.originalUrl} not found`));
 });
+
 // Error handling middleware
 app.use(handleHttpError);
 
-module.exports = app;
+export default app;

@@ -1,7 +1,9 @@
-require("dotenv").config();
-const Sequelize = require("sequelize");
-const fs = require("fs");
-const path = require('path');
+import dotenv from 'dotenv';
+import { Sequelize } from 'sequelize';
+import fs from 'fs';
+import path from 'path';
+
+dotenv.config();
 
 /**
  * Creates a connection to the 'master' database for initial setup.
