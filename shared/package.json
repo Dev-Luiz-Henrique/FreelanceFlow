@@ -1,13 +1,16 @@
 {
     "name": "freelanceflow-shared",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "main": "index.js",
     "type": "module",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1"
     },
     "license": "ISC",
-    "keywords": ["freelance-flow", "shared"],
+    "keywords": [
+        "freelance-flow",
+        "shared"
+    ],
     "author": "Luiz Henrique de Santana & Gabriel Gomes da Cruz",
     "description": "Shares enums and utilities for the FreelanceFlow project.",
     "repository": {
@@ -15,11 +18,11 @@
         "url": "git+https://github.com/Dev-Luiz-Henrique/FreelanceFlow.git"
     },
     "exports": {
-      ".": "./index.js",
-      "./enums": "./lib/enums/index.js"
+        ".": "./index.js",
+        "./enums": "./lib/enums/index.js"
     },
     "files": [
-      "index.js",
-      "lib/"
+        "index.js",
+        "lib/"
     ]
 }
