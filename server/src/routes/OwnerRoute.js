@@ -1,6 +1,9 @@
-const express = require("express");
+import express from "express";
+import OwnerController from "../controllers/OwnerController.js";
+
 const router = express.Router();
-const OwnerController = require("../controllers/OwnerController");
+
+router.get("/owners/:id", OwnerController.getOwnerById);
 
 router.get("/owners", OwnerController.getAllOwners);
 
@@ -10,6 +13,4 @@ router.put("/owners/:id", OwnerController.updateOwnerById);
 
 router.delete("/owners/:id", OwnerController.deleteOwnerById);
 
-router.get("/owners/:id", OwnerController.getOwnerById);
-
-module.exports = router;
+export default router;

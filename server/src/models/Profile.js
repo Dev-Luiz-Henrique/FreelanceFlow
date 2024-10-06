@@ -1,4 +1,4 @@
-const { Model, DataTypes } = require('sequelize');
+import { Model, DataTypes } from 'sequelize';
 
 class Profile extends Model {
     static get attributes() {
@@ -60,4 +60,4 @@ class Profile extends Model {
     }
 }
 
-module.exports = Profile;
+export default Profile;

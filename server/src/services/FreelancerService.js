@@ -1,5 +1,5 @@
-const { Freelancer } = require("../config/sqlContext");
-const { ProfileValidator, DatabaseChecker } = require("../utils/validations");
+import { Freelancer } from "../config/sqlContext.js";
+import { ProfileValidator, DatabaseChecker } from "../utils/validations.js";
 
 async function validateFreelancerData({ email, phone, password, birthDate, username }) {
     ProfileValidator.validateEmailFormat(email);
@@ -46,7 +46,7 @@ const findFreelancerById = async (id) => {
     return await DatabaseChecker.checkExists(Freelancer, id, 'Freelancer not found');
 };
 
-module.exports = {
+export {
     getAllFreelancers,
     createFreelancer,
     updateFreelancer,

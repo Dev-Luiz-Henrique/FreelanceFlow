@@ -1,6 +1,6 @@
-const { Owner } = require("../config/sqlContext");
-const { Op } = require("sequelize");
-const { ConflictError, NotFoundError, ValidationError } = require("../utils/errors/index");
+import { Owner } from "../config/sqlContext.js";
+import { Op } from "sequelize";
+import { ConflictError, NotFoundError, ValidationError } from "../utils/errors/index.js";
 
 // Validations
 
@@ -49,8 +49,8 @@ async function verifyUniqueFields(email, username) {
 }
 
 async function validateOwnerExists(id) {
-    const owner = await owner.findByPk(id);
-    if (!owner) throw ownerNotFoundError('Owner not found');
+    const owner = await Owner.findByPk(id);
+    if (!owner) throw new NotFoundError('Owner not found');
     return owner;
 }
 
@@ -81,12 +81,11 @@ const deleteOwner = async (id) => {
     await owner.destroy();
 };
 
-
 const findOwnerById = async (id) => {
     return await validateOwnerExists(id);
 };
 
-module.exports = {
+export {
     getAllOwners,
     createOwner,
     updateOwner,

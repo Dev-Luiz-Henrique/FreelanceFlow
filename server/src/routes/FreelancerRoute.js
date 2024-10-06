@@ -1,6 +1,7 @@
-const express = require("express");
+import express from "express";
+import FreelancerController from "../controllers/FreelancerController.js";
+
 const router = express.Router();
-const FreelancerController = require("../controllers/FreelancerController");
 
 router.get("/freelancers/:id", FreelancerController.getFreelancerById);
 
@@ -12,4 +13,4 @@ router.put("/freelancers/:id", FreelancerController.updateFreelancerById);
 
 router.delete("/freelancers/:id", FreelancerController.deleteFreelancerById);
 
-module.exports = router;
+export default router;

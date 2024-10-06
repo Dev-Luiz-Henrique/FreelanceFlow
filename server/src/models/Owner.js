@@ -1,4 +1,4 @@
-const Profile = require('./Profile');
+import Profile from './Profile.js';
 
 class Owner extends Profile {
     static init(sequelize) {
@@ -18,4 +18,4 @@ class Owner extends Profile {
     }
 }
 
-module.exports = Owner;
+export default Owner;

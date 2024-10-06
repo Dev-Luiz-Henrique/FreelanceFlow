@@ -1,7 +1,7 @@
-const ProfileValidator = require('./ProfileValidator');
-const DatabaseChecker = require('./DatabaseChecker');
+import ProfileValidator from './ProfileValidator.js';
+import DatabaseChecker from './DatabaseChecker.js';
 
-module.exports = {
+export default {
     ProfileValidator,
     DatabaseChecker,
 };

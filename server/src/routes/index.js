@@ -1,13 +1,16 @@
-const path = require('path');
-const fs = require('fs');
+import path from 'path';
+import fs from 'fs';
 
-module.exports = (app) => {
-    const routesDir = path.join(__dirname);
+export default (app) => {
+    const routesDir = path.join("./");
 
     fs.readdirSync(routesDir).forEach(file => {
         if (file === 'index.js' || !file.endsWith('.js')) return;
 
-        const route = require(path.join(routesDir, file));
-        app.use('/', route);
+        import(path.join(routesDir, file)).then(route => {
+            app.use('/', route.default);
+        }).catch(err => {
+            console.error(`Failed to load route ${file}:`, err);
+        });
     });
 };

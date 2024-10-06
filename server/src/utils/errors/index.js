@@ -1,9 +1,9 @@
-const ConflictError = require('./ConflictError');
-const NotFoundError = require('./NotFoundError');
-const ValidationError = require('./ValidationError');
-const NoContentError = require('./NoContentError');
+import ConflictError from './ConflictError.js';
+import NotFoundError from './NotFoundError.js';
+import ValidationError from './ValidationError.js';
+import NoContentError from './NoContentError.js';
 
-module.exports = {
+export {
     ConflictError,
     NotFoundError,
     ValidationError,

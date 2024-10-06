@@ -1,4 +1,4 @@
-const Profile = require('./Profile');
+import Profile from './Profile.js';
 
 class Freelancer extends Profile {
     static init(sequelize) {
@@ -18,4 +18,4 @@ class Freelancer extends Profile {
     }
 }
 
-module.exports = Freelancer;
+export default Freelancer;

@@ -1,6 +1,6 @@
-const { Op } = require('sequelize'); // Import Op from Sequelize
-const ConflictError = require('../errors/ConflictError');
-const NotFoundError = require('../errors/NotFoundError');
+import { Op } from 'sequelize'; // Import Op from Sequelize
+import ConflictError from '../errors/ConflictError.js';
+import NotFoundError from '../errors/NotFoundError.js';
 
 class DatabaseChecker {
     /**
@@ -45,5 +45,4 @@ class DatabaseChecker {
     }
 }
 
-module.exports = DatabaseChecker;
-
+export default DatabaseChecker;

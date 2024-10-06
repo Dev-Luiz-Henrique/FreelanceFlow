@@ -7,10 +7,6 @@ const mockFreelancers = require('../../mocks/freelancersMock.json');
 // Mock FreelancerService
 jest.mock('../../../services/FreelancerService');
 
-beforeEach(() => {
-    jest.resetAllMocks();
-});
-
 describe('GET /freelancers', () => {
     it('should return a list of freelancers', async () => {
         FreelancerService.getAllFreelancers.mockResolvedValue(mockFreelancers);

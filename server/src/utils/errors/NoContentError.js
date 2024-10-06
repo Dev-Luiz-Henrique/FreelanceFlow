@@ -7,4 +7,4 @@ class NoContentError extends Error {
     }
 }
 
-module.exports = NoContentError;
+export default NoContentError;
